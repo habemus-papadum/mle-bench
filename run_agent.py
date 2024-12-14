@@ -122,10 +122,11 @@ async def main(args):
     # Create tasks for each (competition * seed)
     logger.info(f"Launching run group: {run_group}")
     tasks = []
+
     for seed in range(args.n_seeds):
         for competition_id in competition_ids:
             competition = registry.get_competition(competition_id)
-            run_dir = create_run_dir(competition.id, agent.id, run_group)
+            run_dir = create_run_dir(competition.id, agent.id, run_group, args.run_dir)
             run_id = run_dir.stem
             task = Task(
                 run_id=run_id,
@@ -167,7 +168,7 @@ async def main(args):
         "created_at": get_timestamp(),
         "runs": tasks_outputs,
     }
-    run_group_dir = get_runs_dir() / run_group
+    run_group_dir =  run_dir.parent
     with open(run_group_dir / "metadata.json", "w") as f:
         json.dump(metadata, f, indent=4, sort_keys=False, default=str)
     logger.info(f"{args.n_workers} workers ran for {time_taken:.2f} seconds in total")

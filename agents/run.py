@@ -128,6 +128,7 @@ def run_in_container(
         volumes_config=volumes_config,
         env_vars={
             "COMPETITION_ID": competition.id,
+            "CUDA_VISIBLE_DEVICES": "3",
             **agent.env_vars,
         },
         container_image=image,

@@ -116,6 +116,7 @@ def create_run_dir(
     competition_id: Optional[str] = None,
     agent_id: Optional[str] = None,
     run_group: Optional[str] = None,
+    runs_dir: Optional[str] = None,
 ) -> Path:
     """Creates a directory for the run."""
 
@@ -136,10 +137,11 @@ def create_run_dir(
     if competition_id and agent_id:
         run_id = generate_run_id(competition_id, agent_id, run_group)
 
-    run_dir = get_runs_dir() / run_id
+    runs_dir = Path(runs_dir) if runs_dir else get_runs_dir()
+    run_dir = runs_dir / run_id
 
     if run_group:
-        run_dir = get_runs_dir() / run_group / run_id
+        run_dir = runs_dir / run_group / run_id
 
     run_dir.mkdir(parents=True, exist_ok=False)
 

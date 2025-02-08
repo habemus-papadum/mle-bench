@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Spaceship",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "run_agent.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--agent-id",
+                "aide",
+                "--competition-set",
+                "experiments/splits/spaceship-titanic.txt",
+                "--data-dir",
+                "work/data/",
+                "--run-dir",
+                "work/runs/",
+                "--retain"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Run Spaceship Dev",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "run_agent.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--agent-id",
+                "aide/dev",
+                "--competition-set",
+                "experiments/splits/spaceship-titanic.txt",
+                "--data-dir",
+                "work/data/",
+                "--run-dir",
+                "work/runs/",
+                "--retain"
+            ],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

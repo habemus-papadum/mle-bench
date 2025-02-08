@@ -55,7 +55,6 @@ async def worker(
         run_logger.info(
             f"[Worker {idx}] Running seed {task.seed} for {task.competition.id} and agent {task.agent.name}"
         )
-
         task_output = {}
         try:
             await asyncio.to_thread(
@@ -68,6 +67,7 @@ async def worker(
                 retain_container=args.retain,
                 run_dir=task.path_to_run,
                 logger=run_logger,
+                worker_idx = idx,
             )
             task_output["success"] = True
 
@@ -103,7 +103,7 @@ async def main(args):
             "Carefully consider if you wish to run this agent before continuing. See agents/README.md for more details."
         )
 
-    run_group = f"{get_timestamp()}_run-group_{agent.name}"
+    run_group = f"{get_timestamp()}_run-group_{agent.name}" if args.run_group is None else args.run_group
 
     # Load competition ids and check all are prepared
     with open(args.competition_set, "r") as f:
@@ -181,6 +181,13 @@ if __name__ == "__main__":
         "--agent-id",
         help="Agent ID of the agent to run.",
         type=str,
+    )
+    parser.add_argument(
+        "--run-group",
+        help="Run group name",
+        type=str,
+        required=False,
+        default=None,
     )
     parser.add_argument(
         "--competition-set",

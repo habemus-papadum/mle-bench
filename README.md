@@ -1,3 +1,9 @@
+# NOTES
+`python run_agent.py --agent-id aide/dev --competition-set experiments/splits/spaceship-titanic.txt --data-dir work/data/ --run-dir work/runs/ --n-workers 4 --n-seeds 4`
+`python run_agent.py --agent-id aide/o1-preview --competition-set experiments/splits/jigsaw.txt --data-dir work/data/ --run-dir work/runs/jig1/ --n-workers 24 --n-seeds 24`
+
+
+[2025-02-08 23:01:06,089] [run_agent.py:123] Launching run group: 2025-02-08T23-01-05-GMT_run-group_aide`
 # MLE-bench
 
 Code for the paper ["MLE-Bench: Evaluating Machine Learning Agents on Machine Learning Engineering"](https://arxiv.org/abs/2410.07095). We have released the code used to construct the dataset, the evaluation logic, as well as the agents we evaluated for this benchmark.

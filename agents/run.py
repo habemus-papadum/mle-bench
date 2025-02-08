@@ -93,6 +93,7 @@ def run_in_container(
     retain_container: bool,
     run_dir: Path,
     logger: logging.Logger,
+    worker_idx: int,
 ) -> Path:
     """
     Runs environment containing the competition and agent for a set maximum amount of time.
@@ -128,7 +129,7 @@ def run_in_container(
         volumes_config=volumes_config,
         env_vars={
             "COMPETITION_ID": competition.id,
-            "CUDA_VISIBLE_DEVICES": "3",
+            "CUDA_VISIBLE_DEVICES": str(worker_idx % 8),
             **agent.env_vars,
         },
         container_image=image,
